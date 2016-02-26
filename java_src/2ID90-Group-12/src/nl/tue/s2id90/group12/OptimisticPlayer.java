@@ -14,7 +14,7 @@ import org10x10.dam.game.Move;
 public class OptimisticPlayer extends DraughtsPlayer {
 
     public OptimisticPlayer() {
-        super(UninformedPlayer.class.getResource("resources/optimist.png"));
+        super(UninformedPlayer.class.getResource("resources/hikaru.png"));
     }
     @Override
     /** @return a random move **/

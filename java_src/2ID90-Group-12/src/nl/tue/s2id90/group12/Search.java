@@ -84,8 +84,8 @@ public class Search {
         int WhiteCount = (int)Arrays.stream(s.getPieces()).filter(x -> x == DraughtsState.WHITEPIECE).count();
         int BlackCount = (int)Arrays.stream(s.getPieces()).filter(x -> x == DraughtsState.BLACKPIECE).count();  
         if(maximizing)
-            return WhiteCount - BlackCount;
+            return s.getMoves().size()+WhiteCount - BlackCount;
         else
-            return BlackCount - WhiteCount;
+            return s.getMoves().size()+BlackCount - WhiteCount;
     }
 }

@@ -15,7 +15,7 @@ import org10x10.dam.game.Move;
 public class AlphaPlayer extends DraughtsPlayer {
 
     public AlphaPlayer() {
-        super(AlphaPlayer.class.getResource("resources/optimist.png"));
+        super(AlphaPlayer.class.getResource("resources/sai.png"));
     }
     @Override
     /** @return a random move **/
@@ -27,7 +27,7 @@ public class AlphaPlayer extends DraughtsPlayer {
         {
             int h;
             s.doMove(moves.get(i));
-            h = Search.AlphaBeta(s, 5, true);
+            h = Search.AlphaBeta(s, 7, true);
             s.undoMove(moves.get(i));
             if(h>Value)
             {
