@@ -6,6 +6,7 @@
 package nl.tue.s2id90.group12;
 
 import java.util.List;
+import java.util.Arrays;
 import nl.tue.s2id90.draughts.DraughtsState;
 import org10x10.dam.game.Move;
 
@@ -19,7 +20,7 @@ public class Search {
     {
         int best = 0;
         if(depth == 0 || s.getMoves().isEmpty())
-            return Evaluate(s);
+            return Evaluate(s,maximizing);
         
         List<Move> moves = s.getMoves();
         if(maximizing)
@@ -50,7 +51,7 @@ public class Search {
     {
         int aa = a,bb=b;
         if(depth == 0 || s.getMoves().isEmpty())
-            return Evaluate(s);
+            return Evaluate(s,maximizing);
         
         List<Move> moves = s.getMoves();
         if(maximizing)
@@ -78,8 +79,13 @@ public class Search {
         }
     }
     
-    static private int Evaluate(DraughtsState s)
+    static private int Evaluate(DraughtsState s, boolean maximizing)
     {
-        return 1;
+        int WhiteCount = (int)Arrays.stream(s.getPieces()).filter(x -> x == DraughtsState.WHITEPIECE).count();
+        int BlackCount = (int)Arrays.stream(s.getPieces()).filter(x -> x == DraughtsState.BLACKPIECE).count();  
+        if(maximizing)
+            return WhiteCount - BlackCount;
+        else
+            return BlackCount - WhiteCount;
     }
 }

@@ -21,14 +21,21 @@ public class AlphaPlayer extends DraughtsPlayer {
     /** @return a random move **/
     public Move getMove(DraughtsState s) {
         List<Move> moves = s.getMoves();
-        int[] h = new int[moves.size()];
+        int Index = 0;
+        int Value = -0xFFFF;
         for(int i=0; i<moves.size();i++)
         {
+            int h;
             s.doMove(moves.get(i));
-            h[i] = Search.AlphaBeta(s, 5, true);
+            h = Search.AlphaBeta(s, 5, true);
             s.undoMove(moves.get(i));
+            if(h>Value)
+            {
+                Value = h;
+                Index = i;
+            }
         }
-        return moves.get(0);
+        return moves.get(Index);
     }
 
     @Override
