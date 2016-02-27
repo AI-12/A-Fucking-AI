@@ -16,9 +16,9 @@ import org10x10.dam.game.Move;
  */
 public class Search {
     
-    static public int MinMax(DraughtsState s,int depth, boolean maximizing)
+    static public float MinMax(DraughtsState s,int depth, boolean maximizing)
     {
-        int best = 0;
+        float best = 0;
         if(depth == 0 || s.getMoves().isEmpty())
             return Evaluate(s,maximizing);
         
@@ -42,14 +42,14 @@ public class Search {
         }
     }
     
-    static public int AlphaBeta(DraughtsState s,int depth, boolean maximizing)
+    static public float AlphaBeta(DraughtsState s,int depth, boolean maximizing)
     {
         return AlphaBeta(s,depth,-0xFFFF,0xFFFF,true);
     }
     
-    static private int AlphaBeta(DraughtsState s,int depth, int a, int b , boolean maximizing)
+    static private float AlphaBeta(DraughtsState s,int depth, float a, float b , boolean maximizing)
     {
-        int aa = a,bb=b;
+        float aa = a,bb=b;
         if(depth == 0 || s.getMoves().isEmpty())
             return Evaluate(s,maximizing);
         
@@ -79,13 +79,13 @@ public class Search {
         }
     }
     
-    static private int Evaluate(DraughtsState s, boolean maximizing)
+    static private float Evaluate(DraughtsState s, boolean maximizing)
     {
-        int WhiteCount = (int)Arrays.stream(s.getPieces()).filter(x -> x == DraughtsState.WHITEPIECE).count();
-        int BlackCount = (int)Arrays.stream(s.getPieces()).filter(x -> x == DraughtsState.BLACKPIECE).count();  
+        float WhiteCount = (int)Arrays.stream(s.getPieces()).filter(x -> x == DraughtsState.WHITEPIECE).count();
+        float BlackCount = (int)Arrays.stream(s.getPieces()).filter(x -> x == DraughtsState.BLACKPIECE).count();  
         if(maximizing)
-            return s.getMoves().size()+WhiteCount - BlackCount;
+            return 0.3f * s.getMoves().size()+ 0.7f *  (WhiteCount - BlackCount);
         else
-            return s.getMoves().size()+BlackCount - WhiteCount;
+            return 0.3f * s.getMoves().size()+ 0.7f * (BlackCount - WhiteCount);
     }
 }

@@ -22,10 +22,10 @@ public class AlphaPlayer extends DraughtsPlayer {
     public Move getMove(DraughtsState s) {
         List<Move> moves = s.getMoves();
         int Index = 0;
-        int Value = -0xFFFF;
+        float Value = -0xFFFF;
         for(int i=0; i<moves.size();i++)
         {
-            int h;
+            float h;
             s.doMove(moves.get(i));
             h = Search.AlphaBeta(s, 7, true);
             s.undoMove(moves.get(i));
